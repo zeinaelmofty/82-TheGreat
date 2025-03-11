@@ -15,9 +15,14 @@ public class ProductRepository extends MainRepository<Product> {
         super();
     }
 
+
     @Override
     protected String getDataPath() {
-        return "src/main/java/com/example/data/products.json"; // Path to JSON file
+        String dockerPath = "data/products.json";  // Path inside Docker
+        String localPath = "src/main/java/com/example/data/products.json"; // Path for local testing
+
+        // Check if running in Docker using an environment variable
+        return System.getenv("DOCKER_ENV") != null ? dockerPath : localPath;
     }
 
     @Override

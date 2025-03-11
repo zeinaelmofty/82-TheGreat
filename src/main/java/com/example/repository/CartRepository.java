@@ -15,10 +15,11 @@ public class CartRepository extends MainRepository<Cart> {
     public CartRepository() {
         super();
     }
-
+    String dockerPath = "data/carts.json";  // Path for Docker
+    String localPath = "src/main/java/com/example/data/carts.json";
     @Override
     protected String getDataPath() {
-        return "src/main/java/com/example/data/carts.json"; // Path to JSON file
+        return System.getenv("DOCKER_ENV") != null ? dockerPath : localPath;// Path to JSON file
     }
 
     @Override

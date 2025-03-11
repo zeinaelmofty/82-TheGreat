@@ -17,8 +17,13 @@ public class OrderRepository extends MainRepository<Order> {
 
     @Override
     protected String getDataPath() {
-        return "src/main/java/com/example/data/orders.json"; // Path to JSON file
+        String dockerPath = "data/orders.json";  // Path inside Docker
+        String localPath = "src/main/java/com/example/data/orders.json"; // Path for local testing
+
+        // Check if running in Docker (customize this condition if needed)
+        return System.getenv("DOCKER_ENV") != null ? dockerPath : localPath;
     }
+
 
     @Override
     protected Class<Order[]> getArrayType() {

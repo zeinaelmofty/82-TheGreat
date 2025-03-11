@@ -9,6 +9,7 @@ COPY target/mini1.jar /app/mini1.jar
 
 # Create the data directory inside the container
 RUN mkdir -p /app/data
+ENV DOCKER_ENV=true
 
 # Copy JSON data files from src/main/java/com/example/data
 COPY src/main/java/com/example/data/carts.json /app/data/carts.json

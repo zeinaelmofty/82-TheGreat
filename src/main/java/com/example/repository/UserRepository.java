@@ -1,5 +1,6 @@
 package com.example.repository;
 
+import com.example.model.Order;
 import com.example.model.User;
 import org.springframework.stereotype.Repository;
 
@@ -20,7 +21,11 @@ public class UserRepository extends MainRepository<User> {
     private final OrderRepository orderRepository;
     @Override
     protected String getDataPath() {
-        return "src/main/java/com/example/data/users.json"; // Path to JSON file
+        String dockerPath = "data/users.json";  // Path inside Docker
+        String localPath = "src/main/java/com/example/data/users.json"; // Path for local testing
+
+        // Check if running in Docker using an environment variable
+        return System.getenv("DOCKER_ENV") != null ? dockerPath : localPath;
     }
 
     @Override

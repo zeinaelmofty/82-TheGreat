@@ -5,7 +5,9 @@ import com.example.service.UserService;
 import com.example.service.CartService;
 import com.example.repository.ProductRepository;
 import org.springframework.web.bind.annotation.*;
-
+import com.example.model.Order;
+import com.example.model.Cart;
+import com.example.model.Product;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
